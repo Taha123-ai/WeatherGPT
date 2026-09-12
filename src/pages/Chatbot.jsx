@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { Send, Mic, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { sendMessage } from "../utils/chatbot/api"
+import { sendMessage } from "../utils/chatbot/api";
 import { useSarvamVoice } from "../Hooks/chatbothook/useSarvamVoice";
 import { useLiveCaption } from "../Hooks/chatbothook/useLiveCaption";
 import Hero from "../components/chatbot/Hero";
 import Chat from "../components/chatbot/Chat";
+import { useSelector } from "react-redux";
+import { chatbotlanguage } from "../constants/Language/chatbot/chatbotlanguage";
 
 // Maps our detected language code to the BCP-47 code Sarvam's TTS expects.
 const LANG_TO_VOICE_CODE = {
@@ -18,6 +20,8 @@ const LANG_TO_VOICE_CODE = {
 };
 
 export default function Chatbot() {
+  const language = useSelector((store) => store?.user?.language);
+  const text = chatbotlanguage[language];
   const [inputQuery, setInputQuery] = useState("");
   const [messages, setMessages] = useState([]);
   const [sending, setSending] = useState(false);
@@ -140,7 +144,7 @@ export default function Chatbot() {
       </div>
 
       {/* ================= MAIN ================= */}
-      <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-4xl flex-col px-4 py-6 sm:px-6 sm:py-8">
+      <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-4xl flex-col px-4 py-6 sm:px-6 sm:py-5">
         {/* ================= HERO ================= */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -172,7 +176,6 @@ export default function Chatbot() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-4 sm:mt-5"
         >
           {/* Error */}
           <AnimatePresence>
@@ -192,7 +195,7 @@ export default function Chatbot() {
           </AnimatePresence>
 
           {/* Composer */}
-          <div className="group relative">
+          <div className="group relative sm:-mt-30 -mt-30">
             <div className="absolute -inset-px rounded-[28px] bg-linear-to-r from-cyan-400/20 via-violet-400/10 to-cyan-400/20 opacity-0 blur-md transition-opacity duration-500 group-focus-within:opacity-100" />
 
             <motion.div
@@ -290,10 +293,10 @@ export default function Chatbot() {
                 onKeyDown={handleKeyDown}
                 placeholder={
                   recording
-                    ? "Listening..."
+                    ? text?.Listening
                     : transcribing
-                      ? "Transcribing..."
-                      : "Type or tap the mic to speak..."
+                      ? text?.transcribing
+                      : text?.placeholder
                 }
                 className="
                 min-w-0
@@ -342,10 +345,6 @@ export default function Chatbot() {
               </motion.button>
             </motion.div>
           </div>
-
-          <p className="mt-2 text-center text-[9px] text-slate-400 dark:text-slate-600 sm:text-[10px]">
-            Weather intelligence powered by real-time forecast data
-          </p>
         </motion.div>
       </main>
     </div>

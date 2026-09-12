@@ -1,6 +1,8 @@
 import { CheckCircle2, Volume2, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSarvamVoice } from "../../Hooks/chatbothook/useSarvamVoice";
+import { useSelector } from "react-redux";
+import { chatbotlanguage } from "../../constants/Language/chatbot/chatbotlanguage";
 
 const Chat = ({
   historyLoaded,
@@ -12,6 +14,8 @@ const Chat = ({
   const { speak, speaking } = useSarvamVoice((transcript) =>
     setInputQuery(transcript),
   );
+  const language = useSelector((store) => store?.user?.language);
+  const text = chatbotlanguage[language];
   return (
     <div
       ref={scrollRef}
@@ -19,16 +23,21 @@ const Chat = ({
             weather-chat-scroll
             relative
             flex-1
-            min-h-105
-            max-h-[62vh]
+            min-h-145
+            sm:min-h-105
+            sm:max-h-[62vh]
+            max-h-[72vh]
             overflow-y-auto
             overscroll-contain
             scroll-smooth
             rounded-3xl
+            pt-4
+            px-2
+            mt-10
+            sm:mt-2
             border
             border-slate-200/70
             bg-white/70
-            p-4
             shadow-xl
             shadow-slate-900/4
             backdrop-blur-2xl
@@ -66,15 +75,14 @@ const Chat = ({
           </motion.div>
 
           <h2 className="font-display text-lg font-semibold text-slate-900 dark:text-white sm:text-xl">
-            What would you like to know?
+            {text?.centerTitle}
           </h2>
 
           <p className="mt-2 max-w-md text-xs text-slate-500 dark:text-slate-400 sm:text-sm">
-            Ask about rain, temperature, travel, farming, outdoor plans, or
-            tomorrow's weather.
+            {text?.description}
           </p>
 
-          <div className="mt-5 flex flex-wrap justify-center gap-2">
+          {/* <div className="mt-5 flex flex-wrap justify-center gap-2">
             {[
               "Will it rain tomorrow?",
               "Should I carry an umbrella?",
@@ -102,7 +110,7 @@ const Chat = ({
                 {text}
               </motion.span>
             ))}
-          </div>
+          </div> */}
         </motion.div>
       )}
 
@@ -150,7 +158,7 @@ const Chat = ({
                 {m.from === "bot" && m.verified && (
                   <div className="inline-flex items-center gap-1.5 rounded-full border border-cyan-500/15 bg-cyan-500/6 px-2 py-1 text-[10px] text-cyan-600 dark:text-cyan-300">
                     <CheckCircle2 className="h-3 w-3" />
-                    Verified Data
+                    {text?.Verified}
                   </div>
                 )}
 
@@ -195,7 +203,7 @@ const Chat = ({
             <div className="rounded-[18px] rounded-bl-md border border-slate-200 bg-slate-100 px-4 py-3 dark:border-white/6 dark:bg-slate-800">
               <div className="flex items-center gap-1.5">
                 <span className="mr-1 text-xs text-slate-500 dark:text-slate-400">
-                  Thinking
+                  {text?.Thinking}
                 </span>
 
                 {[0, 1, 2].map((dot) => (
