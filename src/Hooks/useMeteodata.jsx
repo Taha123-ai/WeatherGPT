@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setcurrent, setForecast, settodays24hrdata } from "../store/forecastslice";
+import { setcurrent, setForecast, settodays24hrdata } from "../store/ForecastSlice";
 import { getCurrentHourData } from "../utils/getCurrentHourData";
 import getTodayAllHour from "../utils/getTodayAllHour"
 const useMeteodata = () => {

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Sparkles, Mic, ArrowRight } from "lucide-react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import dashboardlanguage from "../../constants/Language/dashboardlanguage";
+import dashboardlanguage from "../../constants/Language/dashboardLanguage";
 
 
 const Title = () => {
