@@ -57,8 +57,9 @@ function WeatherNavbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6 text-sm font-medium">
             <a
-              href="#assistant"
-              className="hidden items-center gap-1.5 text-slate-300 hover:text-cyan-400 transition-colors"
+              onClick={()=>dispatch("/weathergpt")}
+              href="/weathergpt"
+              className=" items-center cursor-pointer gap-1.5 text-slate-300 hover:text-cyan-400 transition-colors"
             >
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
               {ishomepage
