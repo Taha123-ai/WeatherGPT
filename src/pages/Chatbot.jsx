@@ -113,7 +113,7 @@ export default function Chatbot() {
   }
 
   return (
-    <div className="min-h-screen w-full bg-slate-50/60 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-500 overflow-hidden">
+    <div className="min-h-screen w-full pt-4 -mt-6 bg-slate-50/60 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-500 overflow-hidden">
       {/* Ambient background */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <motion.div
@@ -177,51 +177,34 @@ export default function Chatbot() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          {/* Error */}
-          <AnimatePresence>
-            {voiceError && (
-              <motion.div
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                className="mb-2 flex justify-center"
-              >
-                <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/20 bg-amber-500/10 px-3 py-1.5 text-[11px] text-amber-600 dark:text-amber-300">
-                  <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
-                  {voiceError}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
           {/* Composer */}
-          <div className="group relative sm:-mt-30 -mt-30">
+          <div className="group relative -mt-16 sm:-mt-20 md:-mt-24 lg:-mt-28">
             <div className="absolute -inset-px rounded-[28px] bg-linear-to-r from-cyan-400/20 via-violet-400/10 to-cyan-400/20 opacity-0 blur-md transition-opacity duration-500 group-focus-within:opacity-100" />
 
             <motion.div
               layout
               className="
-              relative
-              flex
-              items-center
-              gap-2
-              rounded-[28px]
-              border
-              border-slate-200
-              bg-white/90
-              p-2
-              shadow-lg
-              shadow-slate-900/5
-              backdrop-blur-xl
-              transition-all
-              duration-300
-              group-focus-within:border-cyan-400/40
-              group-focus-within:shadow-cyan-500/8
+      relative
+      flex
+      items-center
+      gap-2
+      rounded-[28px]
+      border
+      border-slate-200
+      bg-white/90
+      p-2
+      shadow-lg
+      shadow-slate-900/5
+      backdrop-blur-xl
+      transition-all
+      duration-300
+      group-focus-within:border-cyan-400/40
+      group-focus-within:shadow-cyan-500/8
 
-              dark:border-white/8
-              dark:bg-slate-800/90
-              dark:shadow-black/20
-            "
+      dark:border-white/8
+      dark:bg-slate-800/90
+      dark:shadow-black/20
+    "
             >
               {/* ================= MIC ================= */}
               <motion.button
@@ -299,17 +282,17 @@ export default function Chatbot() {
                       : text?.placeholder
                 }
                 className="
-                min-w-0
-                flex-1
-                bg-transparent
-                px-1
-                text-sm
-                text-slate-800
-                outline-none
-                placeholder:text-slate-400
-                dark:text-slate-100
-                dark:placeholder:text-slate-500
-              "
+        min-w-0
+        flex-1
+        bg-transparent
+        px-1
+        text-sm
+        text-slate-800
+        outline-none
+        placeholder:text-slate-400
+        dark:text-slate-100
+        dark:placeholder:text-slate-500
+      "
               />
 
               {/* ================= SEND ================= */}
@@ -321,30 +304,48 @@ export default function Chatbot() {
                   sending || recording || transcribing || !inputQuery.trim()
                 }
                 className="
-                flex
-                h-11
-                w-11
-                shrink-0
-                items-center
-                justify-center
-                rounded-full
-                bg-linear-to-br
-                from-cyan-400
-                to-cyan-500
-                text-slate-950
-                shadow-lg
-                shadow-cyan-500/20
-                transition-all
-                duration-200
-                disabled:cursor-not-allowed
-                disabled:opacity-20
-              "
+        flex
+        h-11
+        w-11
+        shrink-0
+        items-center
+        justify-center
+        rounded-full
+        bg-linear-to-br
+        from-cyan-400
+        to-cyan-500
+        text-slate-950
+        shadow-lg
+        shadow-cyan-500/20
+        transition-all
+        duration-200
+        disabled:cursor-not-allowed
+        disabled:opacity-20
+      "
                 type="button"
               >
                 <Send className="h-4 w-4" />
               </motion.button>
             </motion.div>
           </div>
+
+          {/* Error */}
+          <AnimatePresence>
+            {voiceError && (
+              <motion.div
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className="mt-3 flex justify-center"
+              >
+                <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/20 bg-amber-500/10 px-3 py-1.5 text-[11px] text-amber-600 dark:text-amber-300">
+                  <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+                  {voiceError}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
         </motion.div>
       </main>
     </div>

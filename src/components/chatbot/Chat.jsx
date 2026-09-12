@@ -20,36 +20,36 @@ const Chat = ({
     <div
       ref={scrollRef}
       className="
-            weather-chat-scroll
-            relative
-            flex-1
-            min-h-145
-            sm:min-h-105
-            sm:max-h-[62vh]
-            max-h-[72vh]
-            overflow-y-auto
-            overscroll-contain
-            scroll-smooth
-            rounded-3xl
-            pt-4
-            px-2
-            mt-10
-            sm:mt-2
-            border
-            border-slate-200/70
-            bg-white/70
-            shadow-xl
-            shadow-slate-900/4
-            backdrop-blur-2xl
-            sm:p-6
-                
-            dark:border-white/[0.07]
-            dark:bg-slate-900/60
+        weather-chat-scroll
+        relative
+        flex-1
+        min-h-155
+        sm:min-h-108
+        sm:max-h-[62vh]
+        max-h-[72vh]
+        overflow-y-auto
+        overscroll-contain
+        scroll-smooth
+        rounded-3xl
+        pt-4
+        px-2
+        mt-3
+        sm:mt-1
+        border
+        border-slate-200/70
+        bg-white/70
+        shadow-xl
+        shadow-slate-900/4
+        backdrop-blur-2xl
+        sm:p-6
+            
+        dark:border-white/[0.07]
+        dark:bg-slate-900/60
 
-            [&::-webkit-scrollbar]:hidden
-            [-ms-overflow-style:none]
-            scrollbar-none
-          "
+        [&::-webkit-scrollbar]:hidden
+        [-ms-overflow-style:none]
+        scrollbar-none
+      "
     >
       {/* ================= EMPTY STATE ================= */}
       {historyLoaded && messages.length === 0 && !sending && (
@@ -83,34 +83,34 @@ const Chat = ({
           </p>
 
           {/* <div className="mt-5 flex flex-wrap justify-center gap-2">
-            {[
-              "Will it rain tomorrow?",
-              "Should I carry an umbrella?",
-              "Can I spray pesticides?",
-            ].map((text, index) => (
-              <motion.span
-                key={text}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + index * 0.1 }}
-                whileHover={{ y: -2 }}
-                className="
-                      rounded-full
-                      border border-slate-200
-                      bg-slate-100/80
-                      px-3 py-2
-                      text-[10px]
-                      text-slate-500
-                      dark:border-white/6
-                      dark:bg-slate-800/80
-                      dark:text-slate-400
-                      sm:text-xs
-                    "
-              >
-                {text}
-              </motion.span>
-            ))}
-          </div> */}
+        {[
+          "Will it rain tomorrow?",
+          "Should I carry an umbrella?",
+          "Can I spray pesticides?",
+        ].map((text, index) => (
+          <motion.span
+            key={text}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 + index * 0.1 }}
+            whileHover={{ y: -2 }}
+            className="
+                  rounded-full
+                  border border-slate-200
+                  bg-slate-100/80
+                  px-3 py-2
+                  text-[10px]
+                  text-slate-500
+                  dark:border-white/6
+                  dark:bg-slate-800/80
+                  dark:text-slate-400
+                  sm:text-xs
+                "
+          >
+            {text}
+          </motion.span>
+        ))}
+      </div> */}
         </motion.div>
       )}
 

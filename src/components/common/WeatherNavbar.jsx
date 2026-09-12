@@ -21,8 +21,10 @@ function WeatherNavbar() {
     return store.user?.language;
   });
 
-  const [ishomepage] = useState(true);
+  // const [ishomepage,setishomepage] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [ishomepage, setishomepage] = useState(true);
+
   const [isLangOpen, setIsLangOpen] = useState(false);
 
   const [selectedLang, setSelectedLang] = useState({
@@ -45,27 +47,29 @@ function WeatherNavbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Brand */}
-          <a href="#" className="flex items-center gap-2 group cursor-pointer">
-            <span className="text-2xl transition-transform duration-300 group-hover:scale-110">
-              🌦
+          <div
+            onClick={() => navigate("/")}
+            className="flex items-center group cursor-pointer select-none transition-transform duration-200 hover:scale-105"
+          >
+            <span className="text-[clamp(18px,4vw,28px)] font-semibold tracking-tight text-gray-400">
+              WEATHER
             </span>
-            <span className="text-xl font-bold tracking-tight text-white">
-              Weather<span className="text-cyan-400">GPT</span>
+            <span className="text-[clamp(18px,4vw,28px)] font-extrabold tracking-tight text-sky-300 group-hover:text-sky-200 transition-colors duration-200">
+              GPT
             </span>
-          </a>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6 text-sm font-medium">
-            <a
-              onClick={()=>dispatch("/weathergpt")}
-              href="/weathergpt"
+            {/* <div
+              onClick={()=>{dispatch("/weathergpt") (setishomepage(!ishomepage))}}
               className=" items-center cursor-pointer gap-1.5 text-slate-300 hover:text-cyan-400 transition-colors"
             >
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
               {ishomepage
                 ? navbarlanguage[userlanguage]?.chatbotbtn
                 : navbarlanguage[userlanguage]?.homebtn}
-            </a>
+            </div> */}
 
             {/* Language Dropdown */}
             <div className="relative">
@@ -167,19 +171,28 @@ function WeatherNavbar() {
       {isMenuOpen && (
         <div className="absolute top-full left-0 right-0 md:hidden px-4 pt-3 pb-5 space-y-3 bg-slate-900/95 border-t border-slate-800/80 backdrop-blur-2xl z-50">
           {" "}
-          <a
-            href="#home"
-            className="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-800 text-slate-200"
-          >
-            {navbarlanguage[userlanguage]?.homebtn}
-          </a>
-          <a
-            href="#assistant"
-            className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-800 text-slate-200"
-          >
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-            {navbarlanguage[userlanguage]?.chatbotbtn}
-          </a>
+          {!ishomepage ? (
+            <div
+              onClick={() => {
+                navigate("/");
+                setishomepage(true);
+              }}
+              className="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-800 text-slate-200"
+            >
+              {navbarlanguage?.[userlanguage]?.homebtn}
+            </div>
+          ) : (
+            <div
+              onClick={() => {
+                navigate("/weathergpt");
+                setishomepage(false);
+              }}
+              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-800 text-slate-200"
+            >
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+              {navbarlanguage?.[userlanguage]?.chatbotbtn}
+            </div>
+          )}
           {/* Mobile Language Selector Grid */}
           <div className="pt-2 border-t border-slate-800">
             <span className="block px-3 text-xs text-slate-400 mb-2 font-medium">

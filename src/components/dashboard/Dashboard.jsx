@@ -3,7 +3,7 @@ import { CheckCircle2 } from "lucide-react";
 import CurrentWeatherSection from "./CurrentWeatherSection";
 import Title from "./Title";
 import BrowseForecastCard from "./BrowseForecastCard";
-import AskDirectQuestion from "./AskDirectQuestion";
+// import AskDirectQuestion from "./AskDirectQuestion";
 import VoiceInteraction from "./VoiceInteraction";
 import {WHY_FEATURES} from "../../constants/whyfeatures"
 import { useSelector } from "react-redux";
@@ -14,12 +14,12 @@ export default function Dashboard({ hourlydata }) {
   const language = WHY_FEATURES?.[userlanguage]
   const text = whyweathergptlanguage?.[userlanguage];
   return (
-    <div className="min-h-screen bg-slate-50/60 dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-emerald-500 selection:text-white transition-colors duration-300">
+    <div className="min-h-screen bg-slate-50/60 -mt-6 dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-emerald-500 selection:text-white transition-colors duration-300">
     
       <Title />
       <CurrentWeatherSection hourlydata={hourlydata} />
       <BrowseForecastCard />
-      <AskDirectQuestion />
+      {/* <AskDirectQuestion /> */}
       <VoiceInteraction />
 
       {/* ------WHY WEATHERGPT----- */}

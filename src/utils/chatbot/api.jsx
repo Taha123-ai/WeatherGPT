@@ -1,4 +1,4 @@
-const BASE_URL = "https://askgpt-project.onrender.com/api";
+const BASE_URL = "https://askgpt-project-production.up.railway.app/api";
 
 function getDeviceId() {
   let id = localStorage.getItem("askgpt_device_id");
